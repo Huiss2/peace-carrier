@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피스(Peace) 캐리어 캠페인 — 평화삼천 이사·운영위원·자문위원</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-900: #04342C;
+    --teal-800: #085041;
+    --teal-700: #0F6E56;
+    --teal-500: #1D9E75;
+    --teal-300: #5DCAA5;
+    --teal-100: #9FE1CB;
+    --teal-50:  #E1F5EE;
+    --sand:     #F7F4EE;
+    --sand-dark:#EDE8DF;
+    --ink:      #1C1C1A;
+    --ink-mid:  #444441;
+    --ink-soft: #888780;
+    --white:    #FFFFFF;
+    --serif: 'Nanum Myeongjo', Georgia, serif;
+    --sans:  'Pretendard', -apple-system, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--sand); color: var(--ink); line-height: 1.7; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; background: var(--teal-900);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0; position: relative; overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(29,158,117,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(93,202,165,0.10) 0%, transparent 45%);
+    pointer-events: none;
+  }
+  .hero-badge {
+    position: absolute; top: 36px; left: 50%; transform: translateX(-50%);
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 999px; padding: 7px 20px;
+    font-size: 12px; letter-spacing: 0.12em; color: var(--teal-100);
+    font-weight: 500; white-space: nowrap;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 80px 48px 64px; max-width: 820px;
+    animation: fadeUp 0.9s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 13px; letter-spacing: 0.16em; color: var(--teal-300);
+    font-weight: 500; margin-bottom: 20px; text-transform: uppercase;
+  }
+  .hero-title {
+    font-family: var(--serif); font-size: clamp(36px, 6vw, 64px);
+    font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: 28px;
+  }
+  .hero-title em { font-style: normal; color: var(--teal-300); }
+  .hero-context {
+    max-width: 620px; margin-bottom: 20px;
+    background: rgba(255,255,255,0.06); border-left: 2px solid var(--teal-500);
+    padding: 20px 24px;
+  }
+  .hero-context p {
+    font-size: 16px; color: var(--teal-100); line-height: 1.85; margin-bottom: 12px;
+  }
+  .hero-context p:last-child { margin-bottom: 0; }
+  .hero-context strong { color: var(--white); }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--teal-500); color: var(--white);
+    padding: 14px 28px; border-radius: 4px;
+    font-size: 15px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--teal-300); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: transparent; color: var(--teal-100);
+    padding: 14px 28px; border-radius: 4px;
+    border: 1px solid rgba(159,225,203,0.35);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--teal-300); color: var(--teal-300); }
+  .hero-scroll {
+    position: absolute; bottom: 28px; right: 48px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; color: var(--teal-100); letter-spacing: 0.08em;
+    animation: pulse 2.4s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.5} 50%{opacity:1} }
+  .hero-scroll::before { content:''; width:1px; height:32px; background:var(--teal-500); }
+
+  /* SECTION BASE */
+  section { padding: 88px 48px; max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.16em; color: var(--teal-500);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--teal-50); }
+  h2.section-title {
+    font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800; line-height: 1.25; margin-bottom: 24px; color: var(--ink);
+  }
+  .section-lead { font-size: 16px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 48px; }
+
+  /* WHY */
+  .why-section { background: var(--white); padding: 88px 48px; }
+  .why-inner { max-width: 900px; margin: 0 auto; }
+  .why-section .section-label::after { background: var(--sand-dark); }
+  .stat-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 2px; margin: 40px 0; background: var(--sand-dark);
+  }
+  .stat-card { background: var(--white); padding: 32px 24px; text-align: center; }
+  .stat-num { font-family: var(--serif); font-size: 44px; font-weight: 800; color: var(--teal-700); line-height: 1; }
+  .stat-unit { font-size: 18px; font-weight: 600; color: var(--teal-700); }
+  .stat-label { font-size: 13px; color: var(--ink-soft); margin-top: 8px; line-height: 1.5; }
+  .why-detail {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2px;
+    background: var(--sand-dark); margin-top: 2px;
+  }
+  .why-detail-card {
+    background: var(--white); padding: 28px 28px;
+  }
+  .why-detail-title { font-size: 14px; font-weight: 700; color: var(--teal-700); margin-bottom: 10px; }
+  .why-detail-body { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+
+  /* 역할 */
+  .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--sand-dark); margin: 48px 0; }
+  .role-card { background: var(--white); padding: 36px 32px; }
+  .role-num { font-family: var(--serif); font-size: 48px; font-weight: 800; color: var(--teal-50); line-height: 1; margin-bottom: 16px; }
+  .role-title { font-size: 18px; font-weight: 700; color: var(--teal-700); margin-bottom: 16px; }
+  .role-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+  .role-item { padding: 12px 0; }
+  .role-item-tag {
+    display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+    color: var(--teal-700); background: var(--teal-50); border: 1px solid var(--teal-300);
+    padding: 2px 9px; border-radius: 999px; margin-bottom: 6px;
+  }
+  .role-divider { border: none; border-top: 1px dashed var(--sand-dark); margin: 2px 0; }
+  .role-how { margin-top: 20px; }
+  .btn-role {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%; padding: 12px 20px; border-radius: 4px;
+    background: var(--teal-700); color: var(--white);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-role:hover { background: var(--teal-500); transform: translateY(-1px); }
+  .btn-role-share {
+    background: transparent; border: 1.5px solid var(--teal-500); color: var(--teal-700);
+  }
+  .btn-role-share:hover { background: var(--teal-50); transform: translateY(-1px); }
+
+  /* 사업 현장 */
+  .project-section { background: var(--teal-900); padding: 88px 48px; }
+  .project-inner { max-width: 900px; margin: 0 auto; }
+  .project-section .section-label { color: var(--teal-300); }
+  .project-section .section-label::after { background: rgba(93,202,165,0.2); }
+  .project-section h2.section-title { color: var(--white); }
+  .project-section .section-lead { color: var(--teal-100); }
+  .project-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: rgba(255,255,255,0.06);
+  }
+  .project-card {
+    background: rgba(255,255,255,0.04); padding: 40px 32px;
+    border-top: 2px solid transparent; transition: border-color 0.3s, background 0.3s;
+  }
+  .project-card:hover { border-top-color: var(--teal-500); background: rgba(255,255,255,0.07); }
+  .project-card-icon {
+    font-size: 24px; margin-bottom: 16px;
+    width: 48px; height: 48px; border-radius: 10px;
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(93,202,165,0.25);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-country { font-size: 13px; letter-spacing: 0.12em; color: var(--teal-300); font-weight: 600; margin-bottom: 12px; text-transform: uppercase; }
+  .project-name { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--white); margin-bottom: 14px; line-height: 1.35; }
+  .project-desc { font-size: 14px; color: var(--teal-100); line-height: 1.8; }
+
+  /* 캐리어 */
+  .carrier-section { background: var(--sand-dark); padding: 64px 48px; }
+  .carrier-inner { max-width: 900px; margin: 0 auto; }
+  .carrier-notice-top {
+    background: var(--teal-50); border-left: 3px solid var(--teal-500);
+    padding: 18px 22px; font-size: 15px; color: var(--teal-800); line-height: 1.75;
+    margin-bottom: 28px;
+  }
+  .carrier-compact {
+    background: var(--white); border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--sand);
+  }
+  .carrier-compact-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; border-bottom: 1px solid var(--sand-dark);
+    background: var(--sand);
+  }
+  .carrier-compact-icon { font-size: 32px; flex-shrink: 0; }
+  .carrier-compact-name { font-size: 16px; font-weight: 700; color: var(--teal-700); margin-bottom: 3px; }
+  .carrier-compact-sub { font-size: 13px; color: var(--ink-soft); }
+  .carrier-compact-specs { padding: 0 24px; }
+  .spec-row {
+    padding: 14px 0; border-bottom: 1px solid var(--sand-dark);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .spec-key { font-size: 13px; color: var(--ink-soft); font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .spec-val { font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; }
+  .carrier-link-row {
+    padding: 18px 24px; border-top: 1px solid var(--sand-dark);
+    background: var(--sand); text-align: center;
+  }
+  .btn-carrier-detail {
+    font-size: 13px; font-weight: 600; color: var(--teal-700);
+    text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 8px 18px; border: 1.5px solid var(--teal-500);
+    border-radius: 999px; transition: background 0.2s, color 0.2s;
+  }
+  .btn-carrier-detail:hover { background: var(--teal-50); color: var(--teal-800); }
+
+  /* 타임라인 */
+  .timeline { display: flex; flex-direction: column; gap: 0; margin: 48px 0; position: relative; }
+  .timeline::before {
+    content:''; position:absolute; left: 28px; top: 0; bottom: 0; width: 1px;
+    background: var(--teal-50);
+  }
+  .tl-item { display: grid; grid-template-columns: 56px 1fr; gap: 24px; padding: 20px 0; position: relative; }
+  .tl-dot {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--white); border: 2px solid var(--teal-300);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; color: var(--teal-700); flex-shrink: 0;
+    position: relative; z-index: 1;
+  }
+  .tl-dot.active { background: var(--teal-500); border-color: var(--teal-500); color: var(--white); }
+  .tl-body { padding-top: 12px; }
+  .tl-period { font-size: 12px; color: var(--teal-500); font-weight: 600; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .tl-content { font-size: 15px; color: var(--ink-mid); line-height: 1.65; }
+
+  /* 신청 */
+  .apply-section { background: var(--teal-700); padding: 88px 48px; }
+  .apply-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .apply-section .section-label { color: var(--teal-100); justify-content: center; }
+  .apply-section .section-label::after,
+  .apply-section .section-label::before { content:''; flex:1; height:1px; background:rgba(159,225,203,0.2); }
+  .apply-section h2.section-title { color: var(--white); text-align: center; }
+  .apply-section .section-lead { color: var(--teal-100); text-align: center; }
+  .apply-options { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 40px 0; }
+  .apply-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    padding: 28px 24px; border-radius: 4px; text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .apply-card:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.3); }
+  .apply-tag { font-size: 11px; letter-spacing: 0.1em; color: var(--teal-100); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+  .apply-amount { font-family: var(--serif); font-size: 30px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .apply-detail { font-size: 13px; color: var(--teal-100); line-height: 1.65; }
+  .apply-card-btn {
+    display: block; margin-top: 16px; padding: 11px 16px;
+    border-radius: 4px; text-align: center; text-decoration: none;
+    font-size: 14px; font-weight: 700;
+    background: var(--white); color: var(--teal-700);
+    transition: background 0.2s, transform 0.12s;
+  }
+  .apply-card-btn:hover { background: var(--teal-50); transform: translateY(-1px); }
+  .apply-card-btn-outline {
+    background: transparent; color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .apply-card-btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .apply-share-row {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 20px;
+    color: rgba(159,225,203,0.7); font-size: 14px; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .apply-share-row:hover { color: var(--teal-100); }
+  .apply-share-row svg { stroke: currentColor; flex-shrink: 0; }
+  .apply-notice-text {
+    margin-top: 16px; font-size: 13px; color: rgba(159,225,203,0.55); line-height: 1.6;
+  }
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 360px;
+    background: var(--white); color: var(--teal-700);
+    padding: 16px 32px; border-radius: 4px;
+    font-size: 16px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-apply:hover { background: var(--teal-50); transform: translateY(-1px); }
+  .btn-share {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 360px;
+    background: transparent; color: var(--teal-100);
+    padding: 14px 32px; border-radius: 4px;
+    border: 1px solid rgba(159,225,203,0.35);
+    font-size: 15px; font-weight: 500; text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-share:hover { border-color: var(--teal-100); color: var(--white); }
+  .apply-note { font-size: 12px; color: rgba(159,225,203,0.7); margin-top: 20px; line-height: 1.7; }
+
+  /* 푸터 */
+  footer { background: var(--teal-900); padding: 56px 48px; }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+    padding-bottom: 28px; border-bottom: 1px solid rgba(93,202,165,0.15);
+  }
+  .footer-name { font-size: 16px; font-weight: 700; color: var(--teal-300); margin-bottom: 10px; }
+  .footer-info { font-size: 13px; color: rgba(159,225,203,0.6); line-height: 1.9; }
+  .footer-info a { color: rgba(159,225,203,0.6); text-decoration: none; }
+  .footer-info a:hover { color: var(--teal-300); }
+  .footer-sns { display: flex; gap: 12px; align-items: center; padding-top: 4px; }
+  .sns-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.3);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+    text-decoration: none;
+  }
+  .sns-btn:hover { border-color: var(--teal-300); background: rgba(93,202,165,0.1); }
+  .sns-btn svg { width: 18px; height: 18px; fill: rgba(159,225,203,0.6); transition: fill 0.2s; }
+  .sns-btn:hover svg { fill: var(--teal-300); }
+  .footer-bottom {
+    padding-top: 20px; font-size: 12px; color: rgba(159,225,203,0.35); text-align: center;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    section, .why-section, .project-section, .carrier-section, .apply-section { padding: 64px 24px; }
+    .hero-content { padding: 64px 24px 48px; }
+    .hero-badge { top: 20px; font-size: 11px; padding: 6px 14px; }
+    .role-grid, .project-grid, .why-detail, .apply-options { grid-template-columns: 1fr; }
+    .hero-scroll { right: 24px; }
+    footer { padding: 40px 24px; }
+    .footer-top { flex-direction: column; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero" style="max-width:none; padding:0;">
+  <div class="hero-pattern"></div>
+  <div class="hero-badge">이사 · 운영위원 · 자문위원 · 2026 피스(Peace) 캐리어 캠페인</div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">사단법인 평화삼천 · Peace Carrier Campaign 2026</div>
+    <h1 class="hero-title">
+      당신의 여행이<br>
+      아이들의 <em>내일</em>이 됩니다
+    </h1>
+    <div class="hero-context">
+      <p>평화삼천은 2008년부터 라오스, 베트남, 필리핀에서 교육 지원 사업을 이어오고 있습니다. 창립 20주년을 넘긴 지금, 해외 사업은 더 넓어졌지만 이를 안정적으로 뒷받침할 정기후원자는 해마다 줄어들고 있습니다.</p>
+      <p>이번 캠페인은 <strong>이사·운영위원·자문위원 여러분</strong>의 동참으로 시작합니다. 본인의 후원을 점검하시고, 주변 지인 세 분께 평화삼천을 소개해 주세요. 여러분의 한 걸음이 아이들의 내일을 바꿉니다.</p>
+    </div>
+    <div class="hero-ctas">
+      <a href="#apply" class="btn-primary">지금 함께하기 →</a>
+      <a href="#why" class="btn-secondary">캠페인 살펴보기</a>
+    </div>
+  </div>
+  <div class="hero-scroll">아래로 스크롤</div>
+</section>
+
+<!-- WHY -->
+<div class="why-section" id="why">
+  <div class="why-inner">
+    <div class="section-label">지금, 함께해야 하는 이유</div>
+    <h2 class="section-title">18년의 사업,<br>줄어드는 후원자</h2>
+    <p class="section-lead">
+      평화삼천은 2008년부터 현재(2026년)까지 18년간 라오스·베트남·필리핀 현지에서 교육 지원 사업을 확장해 왔습니다. 그러나 정기후원자는 2013년 정점 이후 꾸준히 감소하여, 사업 규모와 후원 기반 사이의 간격이 벌어지고 있습니다. 이 간격을 메우기 위해 새로운 정기후원자가 필요합니다.
+    </p>
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-num">18<span class="stat-unit">년</span></div>
+        <div class="stat-label">해외 교육지원 사업<br>2008년 ~ 현재(2026년)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">1,062<span class="stat-unit">명</span></div>
+        <div class="stat-label">2026년 4월 현재<br>정기후원자</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">300<span class="stat-unit">명</span></div>
+        <div class="stat-label">이번 캠페인<br>목표 신규 후원자</div>
+      </div>
+    </div>
+    <div class="why-detail">
+      <div class="why-detail-card">
+        <div class="why-detail-title">후원자는 왜 줄었나요?</div>
+        <div class="why-detail-body">2013년 1,586명을 정점으로 후원자 고령화, 신규 유입 저조, 코로나19 이후 대면 모집 기회 감소가 맞물리며 해마다 감소해 왔습니다. 현재 1,062명(2026년 4월 기준)까지 줄어든 상태입니다.</div>
+      </div>
+      <div class="why-detail-card">
+        <div class="why-detail-title">사업은 왜 확장되었나요?</div>
+        <div class="why-detail-body">창립 20주년을 넘어 라오스 직업기술교육, 베트남 CG 전문교육, 필리핀 아동결연 등 현지 수요에 맞춰 사업 범위가 넓어졌습니다. 안정적인 사업 운영을 위해 정기후원자 확대가 절실합니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 역할 -->
+<section>
+  <div class="section-label">이사 · 운영위원 · 자문위원께</div>
+  <h2 class="section-title">두 가지를<br>부탁드립니다</h2>
+  <p class="section-lead">
+    이번 캠페인은 6월부터 이사·운영위원·자문위원을 중심으로 시작합니다. 여러분이 먼저 동참하시고, 여러분의 네트워크를 활용하여 3명 이상의 신규 후원자를 모아주세요.
+  </p>
+  <div class="role-grid">
+    <div class="role-card">
+      <div class="role-num">01</div>
+      <div class="role-title">본인 후원 점검 및 증액</div>
+      <div class="role-desc">
+        <div class="role-item">
+          <span class="role-item-tag">현재 후원 중이신 분</span>
+          월 1만원 이상 증액을 검토해 주세요.
+        </div>
+        <div class="role-divider"></div>
+        <div class="role-item">
+          <span class="role-item-tag">아직 후원 전이신 분</span>
+          월 2만원 정기후원으로 함께 시작해 주세요.
+        </div>
+      </div>
+      <div class="role-how">
+        <a href="https://www.peace3000.net/" target="_blank" class="btn-role">후원 신청하기 →</a>
+      </div>
+    </div>
+    <div class="role-card">
+      <div class="role-num">02</div>
+      <div class="role-title">지인 3명께 이 페이지 공유</div>
+      <div class="role-desc">
+        가족, 자녀, 친구, 지인 등 평화삼천의 가치에 공감할 만한 분 세 분께 이 페이지 링크를 카카오톡 또는 문자로 보내 주세요.
+      </div>
+      <div class="role-how">
+        <a href="#" class="btn-role btn-role-share" id="role-share-btn">공유하기 →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 사업 현장 -->
+<div class="project-section">
+  <div class="project-inner">
+    <div class="section-label">후원금이 가는 곳</div>
+    <h2 class="section-title">아이들이<br>꿈꾸는 곳</h2>
+    <p class="section-lead">
+      평화삼천은 창립 20주년을 넘어 해외 교육지원 사업을 확장하고 있습니다. 현재 라오스와 베트남에서 현지 청소년들이 기술을 배우고 스스로 미래를 열어갈 수 있도록 직업기술교육을 직접 운영하고 있습니다. 여러분의 정기후원이 이 사업을 지속 가능하게 합니다.
+    </p>
+    <div class="project-grid">
+      <div class="project-card">
+        <div class="project-card-icon">🧵</div>
+        <div class="project-country">Laos · 라오스</div>
+        <div class="project-name">라오스 왕마이 직업기술교육센터</div>
+        <div class="project-desc">재봉·컴퓨터 교육으로 청소년들이 스스로 자립할 수 있는 기술과 힘을 기릅니다.</div>
+      </div>
+      <div class="project-card">
+        <div class="project-card-icon">🎬</div>
+        <div class="project-country">Vietnam · 베트남</div>
+        <div class="project-name">한·베직업전문대학 CG 기술교육</div>
+        <div class="project-desc">지역 청소년과 청년들이 CG 전문기술을 배워 새로운 진로와 미래를 꿈꿀 수 있도록 지원합니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 캐리어 -->
+<div class="carrier-section">
+  <div class="carrier-inner">
+    <div class="section-label">감사의 선물</div>
+    <h2 class="section-title">피스(Peace) 캐리어</h2>
+    <div class="carrier-notice-top">
+      평화삼천이 기증받은 캐리어를 신규·증액 후원자분께 감사의 의미로 전달드립니다.
+    </div>
+    <div class="carrier-compact">
+      <div class="carrier-compact-header">
+        <div class="carrier-compact-icon">🧳</div>
+        <div>
+          <div class="carrier-compact-name">인포트 루미나 20인치</div>
+          <div class="carrier-compact-sub">프리미엄 폴리카보네이트 · 기증받은 캐리어</div>
+        </div>
+      </div>
+      <div class="carrier-compact-specs">
+        <div class="spec-row">
+          <div class="spec-key">색상</div>
+          <div class="spec-val">아이보리 / 실버 중 랜덤 발송 예정</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">소재</div>
+          <div class="spec-val">단단한 폴리카보네이트</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">A/S</div>
+          <div class="spec-val">평생 무료</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">배송</div>
+          <div class="spec-val">첫 달 후원 확인 후 순차 배송</div>
+        </div>
+      </div>
+      <div class="carrier-link-row">
+        <a href="https://infortmall.co.kr/product/%EC%9D%B8%ED%8F%AC%ED%8A%B8-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%BA%90%EB%A6%AC%EC%96%B4-%EB%A3%A8%EB%AF%B8%EB%82%98-%EB%8B%A4%EC%9D%B4%EC%95%84%EB%AA%AC%EB%93%9C-%EC%8B%A4%EB%B2%84-20%EC%9D%B8%EC%B9%98/93/category/54/display/1/" target="_blank" class="btn-carrier-detail">평화삼천이 준비한 감사선물, '피스 캐리어' 자세히 보기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 추진 일정 -->
+<section>
+  <div class="section-label">추진 일정</div>
+  <h2 class="section-title">함께하는<br>6개월</h2>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot active">5월</div>
+      <div class="tl-body">
+        <div class="tl-period">2026년 5월</div>
+        <div class="tl-content">캠페인 페이지 제작 및 운영 준비 — <strong style="color:#0F6E56;">지금 이 단계</strong></div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot active">6–7월</div>
+      <div class="tl-body">
+        <div class="tl-period">2026년 6월 ~ 7월</div>
+        <div class="tl-content">이사·운영위원·자문위원 대상 지인 초대 시작 · 기존 후원자 증액 요청 · 6월부터 감사 선물 순차 배송</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">7–9월</div>
+      <div class="tl-body">
+        <div class="tl-period">2026년 7월 ~ 9월</div>
+        <div class="tl-content">기존 후원자 지인초대 확산</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-dot">10–12월</div>
+      <div class="tl-body">
+        <div class="tl-period">2026년 10월 ~ 12월</div>
+        <div class="tl-content">가톨릭신문 광고 · 신규 회원 모집 확대</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 신청 -->
+<div class="apply-section" id="apply">
+  <div class="apply-inner">
+    <div class="section-label">지금 바로</div>
+    <h2 class="section-title">함께 떠나요</h2>
+    <p class="section-lead">캠페인 기간: 2026년 6월 1일 ~ 12월 1일</p>
+    <div class="apply-options">
+      <div class="apply-card">
+        <div class="apply-tag">신규 정기후원</div>
+        <div class="apply-amount">월 2만원</div>
+        <div class="apply-detail">CMS 자동이체. 피스(Peace) 캐리어 증정</div>
+        <a href="https://www.peace3000.net/" target="_blank" class="apply-card-btn">신규 후원 신청하기 →</a>
+      </div>
+      <div class="apply-card">
+        <div class="apply-tag">기존 회원 증액</div>
+        <div class="apply-amount">월 +1만원</div>
+        <div class="apply-detail">기존 후원 유지 + 증액. 동일 캐리어 감사 선물</div>
+        <a href="https://www.peace3000.net/" target="_blank" class="apply-card-btn apply-card-btn-outline">증액 신청하기 →</a>
+      </div>
+    </div>
+    <div class="apply-share-row" id="share-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+      공유하기 (지인 초대 링크 전송)
+    </div>
+    <p class="apply-notice-text">후원 신청 후 사무국에서 개별 연락드립니다.</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-name">사단법인 평화삼천</div>
+        <div class="footer-info">
+          Tel. 02-723-9473 / 9475<br>
+          <a href="mailto:peace3000@peace3000.net">peace3000@peace3000.net</a><br>
+          <a href="https://www.peace3000.net/" target="_blank">www.peace3000.net</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:12px;color:rgba(159,225,203,0.4);margin-bottom:12px;letter-spacing:0.06em;">SNS</div>
+        <div class="footer-sns">
+          <!-- 인스타그램 -->
+          <a href="#" class="sns-btn" aria-label="인스타그램" title="인스타그램">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+          <!-- 페이스북 -->
+          <a href="#" class="sns-btn" aria-label="페이스북" title="페이스북">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </a>
+          <!-- 네이버 블로그 -->
+          <a href="#" class="sns-btn" aria-label="네이버 블로그" title="네이버 블로그">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 사단법인 평화삼천 · 피스케리어 캠페인 이사·운영위원·자문위원 참여 페이지</div>
+  </div>
+</footer>
+
+<script>
+  function doShare(e) {
+    if (e) e.preventDefault();
+    var shareData = {
+      title: '피스(Peace) 캐리어 — 당신의 여행이 기부가 됩니다',
+      text: '평화삼천 피스 캐리어 캠페인에 함께해 주세요. 월 2만원 정기후원으로 라오스·베트남 청소년 교육을 지원합니다.',
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(shareData).catch(function(){});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(shareData.url).then(function() {
+        alert('링크가 복사되었습니다!\n카카오톡 또는 문자에 붙여넣기 해주세요.');
+      });
+    } else {
+      prompt('아래 링크를 복사해 공유해 주세요:', shareData.url);
+    }
+  }
+
+  var shareBtn = document.getElementById('share-btn');
+  if (shareBtn) shareBtn.addEventListener('click', doShare);
+  var roleShareBtn = document.getElementById('role-share-btn');
+  if (roleShareBtn) roleShareBtn.addEventListener('click', doShare);
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
