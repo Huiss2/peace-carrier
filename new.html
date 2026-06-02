@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>피스(Peace) 캐리어 캠페인 — 평화삼천</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Pretendard:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --teal-900: #04342C;
+    --teal-800: #085041;
+    --teal-700: #0F6E56;
+    --teal-500: #1D9E75;
+    --teal-300: #5DCAA5;
+    --teal-100: #9FE1CB;
+    --teal-50:  #E1F5EE;
+    --sand:     #E8F5F0;
+    --sand-dark:#C8E8DA;
+    --ink:      #1C1C1A;
+    --ink-mid:  #444441;
+    --ink-soft: #888780;
+    --white:    #FFFFFF;
+    --serif: 'Nanum Myeongjo', Georgia, serif;
+    --sans:  'Pretendard', -apple-system, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--sand); color: var(--ink); line-height: 1.7; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(150deg, #0A7EA4 0%, #0D9E8A 40%, #1DB88A 100%);
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 0; position: relative; overflow: hidden;
+  }
+  .hero-pattern {
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(ellipse at 70% 10%, rgba(255,255,255,0.18) 0%, transparent 55%),
+      radial-gradient(circle at 10% 80%, rgba(255,255,255,0.10) 0%, transparent 45%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Cellipse cx='480' cy='80' rx='200' ry='120' fill='none' stroke='rgba(255,255,255,0.08)' stroke-width='1.5'/%3E%3Cellipse cx='480' cy='80' rx='140' ry='80' fill='none' stroke='rgba(255,255,255,0.06)' stroke-width='1'/%3E%3Cpath d='M 60 300 Q 150 260 240 280 Q 330 300 420 270 Q 510 240 590 260' fill='none' stroke='rgba(255,255,255,0.07)' stroke-width='1.5'/%3E%3Cpath d='M 60 330 Q 160 300 260 315 Q 360 330 460 305 Q 530 285 600 300' fill='none' stroke='rgba(255,255,255,0.05)' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: cover;
+    pointer-events: none;
+  }
+  .hero-content {
+    position: relative; z-index: 1;
+    padding: 100px 48px 80px; max-width: 820px;
+    animation: fadeUp 0.85s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-eyebrow {
+    font-size: 12px; letter-spacing: 0.18em; color: rgba(255,255,255,0.85);
+    font-weight: 600; margin-bottom: 22px; text-transform: uppercase;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 28px; height: 1px; background: rgba(255,255,255,0.5);
+  }
+  .hero-title {
+    font-family: var(--serif); font-size: clamp(38px, 6.5vw, 68px);
+    font-weight: 800; color: var(--white); line-height: 1.13; margin-bottom: 24px;
+  }
+  .hero-title em { font-style: normal; color: #FFFDE7; text-shadow: 0 2px 16px rgba(0,0,0,0.15); }
+  .hero-sub {
+    font-size: 18px; color: rgba(255,255,255,0.9); line-height: 1.85;
+    max-width: 520px; margin-bottom: 44px;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 600; }
+  .hero-subtitle {
+    font-family: var(--serif); font-size: clamp(18px, 2.5vw, 24px);
+    color: rgba(255,255,255,0.9); font-weight: 400; margin-bottom: 40px;
+    letter-spacing: 0.02em;
+  }
+  .hero-cta-group { display: flex; flex-direction: column; gap: 14px; max-width: 340px; }
+  .btn-hero {
+    display: flex; align-items: center; justify-content: center;
+    padding: 18px 32px; border-radius: 4px;
+    font-size: 17px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s, border-color 0.2s;
+  }
+  .btn-hero-primary { background: var(--white); color: var(--teal-700); }
+  .btn-hero-primary:hover { background: var(--teal-50); transform: translateY(-2px); }
+  .btn-hero-secondary {
+    background: transparent; color: var(--teal-100);
+    border: 1px solid rgba(159,225,203,0.35); font-size: 15px; font-weight: 500;
+  }
+  .btn-hero-secondary:hover { border-color: var(--teal-300); color: var(--teal-300); }
+  .hero-trust {
+    margin-top: 48px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .trust-item {
+    font-size: 12px; color: rgba(159,225,203,0.55);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .trust-item::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--teal-500); flex-shrink: 0;
+  }
+  .hero-scroll {
+    position: absolute; bottom: 32px; right: 48px;
+    display: flex; align-items: center; gap: 8px;
+    font-size: 11px; color: rgba(159,225,203,0.4); letter-spacing: 0.1em;
+    animation: pulse 2.4s ease infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:0.4} 50%{opacity:0.9} }
+  .hero-scroll::before { content:''; width:1px; height:28px; background:var(--teal-700); }
+
+  /* ── SECTION BASE ── */
+  .sec { padding: 88px 48px; max-width: 900px; margin: 0 auto; }
+  .sec-full { padding: 88px 48px; }
+  .sec-inner { max-width: 900px; margin: 0 auto; }
+  .section-label {
+    font-size: 11px; letter-spacing: 0.16em; color: var(--teal-500);
+    text-transform: uppercase; font-weight: 600; margin-bottom: 16px;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::after { content:''; flex:1; height:1px; background:var(--teal-50); }
+  h2.section-title {
+    font-family: var(--serif); font-size: clamp(26px, 4vw, 38px);
+    font-weight: 800; line-height: 1.25; margin-bottom: 20px; color: var(--ink);
+  }
+  .section-lead { font-size: 16px; color: var(--ink-mid); line-height: 1.85; margin-bottom: 48px; }
+
+  /* ── 사업 카드 (밝은 배경) ── */
+  .project-cards-section { background: var(--sand); }
+  .project-cards-section .section-label::after { background: var(--sand-dark); }
+  .project-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 2px; background: var(--sand-dark); margin-top: 40px;
+  }
+  .project-grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .project-grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .project-card-light {
+    background: var(--white); padding: 44px 36px;
+    border-top: 3px solid transparent;
+    transition: border-color 0.3s;
+  }
+  .project-card-light:hover { border-top-color: var(--teal-500); }
+  .project-country-light {
+    font-size: 11px; letter-spacing: 0.14em; color: var(--teal-500);
+    font-weight: 700; margin-bottom: 14px; text-transform: uppercase;
+  }
+  .project-name-light {
+    font-family: var(--serif); font-size: 22px; font-weight: 800;
+    color: var(--ink); margin-bottom: 16px; line-height: 1.35;
+  }
+  .project-card-icon {
+    font-size: 28px; margin-bottom: 16px;
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--teal-50); border: 1px solid var(--teal-300);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .project-desc-light { font-size: 15px; color: var(--ink-mid); line-height: 1.85; }
+  /* 참여방법 버튼 입체감 */
+  .how-cta-btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 18px 44px; border-radius: 6px;
+    background: var(--teal-700); color: var(--white);
+    font-size: 17px; font-weight: 700; text-decoration: none;
+    box-shadow: 0 6px 0 var(--teal-900), 0 8px 16px rgba(4,52,44,0.3);
+    transition: transform 0.12s, box-shadow 0.12s;
+    position: relative; top: 0;
+  }
+  .how-cta-btn:hover {
+    transform: translateY(3px);
+    box-shadow: 0 3px 0 var(--teal-900), 0 4px 8px rgba(4,52,44,0.25);
+  }
+  .how-cta-btn:active {
+    transform: translateY(6px);
+    box-shadow: 0 0 0 var(--teal-900), 0 2px 4px rgba(4,52,44,0.2);
+  }
+  .project-section { background: var(--white); }
+  .project-section .section-label { color: var(--teal-500); }
+  .project-section .section-label::after { background: var(--sand-dark); }
+  .impact-row {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--sand-dark); margin-bottom: 2px;
+  }
+  .impact-card { background: var(--teal-900); padding: 28px 24px; text-align: center; }
+  .impact-num {
+    font-family: var(--serif); font-size: 40px; font-weight: 800;
+    color: var(--teal-300); line-height: 1;
+  }
+  .impact-unit { font-size: 18px; color: var(--teal-300); font-weight: 700; }
+  .impact-label { font-size: 12px; color: var(--teal-100); margin-top: 8px; line-height: 1.5; }
+
+
+  /* ── 참여 방법 ── */
+  .how-section { background: var(--white); }
+  .how-section .section-label::after { background: var(--sand-dark); }
+  .how-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 2px; background: var(--sand-dark); margin-top: 40px;
+  }
+  .how-step { background: var(--white); padding: 36px 28px; display: flex; flex-direction: column; }
+  .how-step-desc { flex: 1; }
+  .how-step-num {
+    font-family: var(--serif); font-size: 52px; font-weight: 800;
+    color: var(--teal-50); line-height: 1; margin-bottom: 16px;
+  }
+  .how-step-title { font-size: 16px; font-weight: 700; color: var(--teal-700); margin-bottom: 10px; }
+  .how-step-desc { font-size: 14px; color: var(--ink-mid); line-height: 1.75; }
+  .how-step-tag { margin-top: auto;
+    display: inline-block; margin-top: 14px;
+    font-size: 12px; font-weight: 700; color: var(--white);
+    background: var(--teal-500); padding: 4px 12px; border-radius: 999px;
+  }
+
+  /* ── 캐리어 ── */
+  .carrier-section { background: var(--sand-dark); padding: 64px 48px; }
+  .carrier-inner { max-width: 900px; margin: 0 auto; }
+  .carrier-section .section-label::after { background: var(--sand); }
+  .carrier-notice-top {
+    background: var(--teal-50); border-left: 3px solid var(--teal-500);
+    padding: 16px 20px; font-size: 15px; color: var(--teal-800); line-height: 1.7;
+    margin-bottom: 24px;
+  }
+  .carrier-compact {
+    background: var(--white); border-radius: 4px; overflow: hidden;
+    border: 1px solid var(--sand);
+  }
+  .carrier-compact-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 20px 24px; border-bottom: 1px solid var(--sand-dark); background: var(--sand);
+  }
+  .carrier-compact-icon { font-size: 32px; flex-shrink: 0; }
+  .carrier-compact-name { font-size: 16px; font-weight: 700; color: var(--teal-700); margin-bottom: 3px; }
+  .carrier-compact-sub { font-size: 13px; color: var(--ink-soft); }
+  .carrier-compact-specs { padding: 0 24px; }
+  .spec-row {
+    padding: 13px 0; border-bottom: 1px solid var(--sand-dark);
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  }
+  .spec-key { font-size: 13px; color: var(--ink-soft); font-weight: 500; white-space: nowrap; flex-shrink: 0; }
+  .spec-val { font-size: 14px; color: var(--ink); font-weight: 500; text-align: right; }
+  .carrier-link-row {
+    padding: 16px 24px; border-top: 1px solid var(--sand-dark);
+    background: var(--sand); text-align: center;
+  }
+  .btn-carrier-detail {
+    font-size: 13px; font-weight: 600; color: var(--teal-700); text-decoration: none;
+    display: inline-flex; align-items: center; gap: 5px;
+    padding: 8px 18px; border: 1.5px solid var(--teal-500); border-radius: 999px;
+    transition: background 0.2s;
+  }
+  .btn-carrier-detail:hover { background: var(--teal-50); }
+
+  /* ── 후원 신청 (메인 CTA) ── */
+  .apply-section { background: var(--teal-700); padding: 96px 48px; }
+  .apply-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .apply-section .section-label { color: var(--teal-100); justify-content: center; }
+  .apply-section .section-label::before,
+  .apply-section .section-label::after { content:''; flex:1; height:1px; background:rgba(159,225,203,0.2); }
+  .apply-section h2.section-title { color: var(--white); text-align: center; }
+  .apply-period {
+    font-size: 14px; color: var(--teal-100); margin-bottom: 36px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .apply-period::before, .apply-period::after {
+    content: ''; flex: 1; max-width: 60px; height: 1px; background: rgba(159,225,203,0.25);
+  }
+  .apply-options { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 32px; }
+  .apply-card {
+    background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+    padding: 26px 22px; border-radius: 4px; text-align: left;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .apply-card.featured {
+    border-color: rgba(93,202,165,0.6); background: rgba(29,158,117,0.2);
+  }
+  .apply-card:hover { background: rgba(255,255,255,0.13); border-color: rgba(255,255,255,0.3); }
+  .apply-tag { font-size: 11px; letter-spacing: 0.1em; color: var(--teal-100); font-weight: 600; margin-bottom: 10px; text-transform: uppercase; }
+  .apply-amount { font-family: var(--serif); font-size: 30px; font-weight: 800; color: var(--white); margin-bottom: 8px; }
+  .apply-detail { font-size: 13px; color: var(--teal-100); line-height: 1.65; }
+  .apply-btns { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+  .btn-apply-main {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 360px; padding: 18px 32px; border-radius: 4px;
+    background: var(--white); color: var(--teal-700);
+    font-size: 17px; font-weight: 700; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-apply-main:hover { background: var(--teal-50); transform: translateY(-2px); }
+  .btn-share-sub {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    width: 100%; max-width: 360px; padding: 14px 32px; border-radius: 4px;
+    background: transparent; color: var(--teal-100);
+    border: 1px solid rgba(159,225,203,0.3); font-size: 14px; font-weight: 500;
+    text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-share-sub:hover { border-color: var(--teal-100); color: var(--white); }
+  .how-step-btn-wrap { margin-top: 16px; }
+  .how-cta-wrap { margin-top: 40px; text-align: center; }
+  .how-step-btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 100%; padding: 11px 16px; border-radius: 4px;
+    background: var(--teal-700); color: var(--white);
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .how-step-btn:hover { background: var(--teal-500); transform: translateY(-1px); }
+  .how-step-btn-outline {
+    background: transparent; color: var(--teal-700);
+    border: 1.5px solid var(--teal-500);
+  }
+  .how-step-btn-outline:hover { background: var(--teal-50); transform: translateY(-1px); }
+  .apply-card-btn {
+    display: block; margin-top: 16px; padding: 11px 16px;
+    border-radius: 4px; text-align: center; text-decoration: none;
+    font-size: 14px; font-weight: 700;
+    background: var(--white); color: var(--teal-700);
+    transition: background 0.2s, transform 0.12s;
+  }
+  .apply-card-btn:hover { background: var(--teal-50); transform: translateY(-1px); }
+  .apply-card-btn-outline {
+    background: transparent; color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.4);
+  }
+  .apply-card-btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .apply-share-row {
+    display: inline-flex; align-items: center; gap: 7px; margin-top: 20px;
+    color: rgba(159,225,203,0.7); font-size: 14px; cursor: pointer;
+    transition: color 0.2s;
+  }
+  .apply-share-row:hover { color: var(--teal-100); }
+  .apply-share-row svg { stroke: currentColor; flex-shrink: 0; }
+  .apply-notice-text {
+    margin-top: 16px; font-size: 13px; color: rgba(159,225,203,0.55); line-height: 1.6;
+  }
+  .apply-notice-box {
+    width: 100%; max-width: 360px; margin: 0 auto 16px;
+    background: var(--white); color: var(--teal-800);
+    padding: 14px 20px; border-radius: 4px;
+    font-size: 15px; font-weight: 700; text-align: center;
+    border: 2px solid var(--teal-300);
+  }
+  .apply-note { font-size: 12px; color: rgba(159,225,203,0.6); margin-top: 4px; line-height: 1.75; }
+
+  /* ── 신뢰 정보 ── */
+  .trust-section { background: var(--white); }
+  .trust-section .section-label::after { background: var(--sand-dark); }
+  .trust-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px; background: var(--sand-dark); margin-top: 40px;
+  }
+  .trust-card { background: var(--white); padding: 28px 26px; }
+  .trust-icon {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: var(--teal-50); border: 1px solid var(--teal-300);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; margin-bottom: 14px;
+  }
+  .trust-title { font-size: 14px; font-weight: 700; color: var(--teal-700); margin-bottom: 8px; }
+  .trust-body { font-size: 13px; color: var(--ink-soft); line-height: 1.7; }
+
+  /* ── FAQ ── */
+  .faq-section { background: var(--sand); }
+  .faq-section .section-label::after { background: var(--sand-dark); }
+  .faq-list { margin-top: 36px; display: flex; flex-direction: column; gap: 2px; }
+  .faq-item { background: var(--white); overflow: hidden; }
+  .faq-q {
+    width: 100%; background: none; border: none; text-align: left;
+    padding: 20px 24px; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center; gap: 16px;
+    font-family: var(--sans); font-size: 15px; font-weight: 600; color: var(--ink);
+    transition: background 0.2s;
+  }
+  .faq-q:hover { background: var(--sand); }
+  .faq-q-text { flex: 1; text-align: left; }
+  .faq-icon {
+    width: 24px; height: 24px; flex-shrink: 0; border-radius: 50%;
+    border: 1.5px solid var(--teal-300);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; color: var(--teal-500); font-weight: 400; line-height: 1;
+    transition: transform 0.25s, background 0.2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--teal-50); }
+  .faq-a {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.32s ease, padding 0.32s ease;
+    font-size: 14px; color: var(--ink-mid); line-height: 1.85;
+    background: var(--white); padding: 0 24px;
+    border-top: 0px solid transparent;
+  }
+  .faq-item.open .faq-a {
+    max-height: 320px; padding: 20px 24px;
+    border-top: 1px solid var(--sand-dark);
+  }
+
+  /* ── 푸터 ── */
+  footer { background: var(--teal-900); padding: 56px 48px; }
+  .footer-inner { max-width: 900px; margin: 0 auto; }
+  .footer-top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 32px; flex-wrap: wrap;
+    padding-bottom: 28px; border-bottom: 1px solid rgba(93,202,165,0.12);
+  }
+  .footer-name { font-size: 16px; font-weight: 700; color: var(--teal-300); margin-bottom: 10px; }
+  .footer-info { font-size: 13px; color: rgba(159,225,203,0.55); line-height: 2; }
+  .footer-info a { color: rgba(159,225,203,0.55); text-decoration: none; }
+  .footer-info a:hover { color: var(--teal-300); }
+  .footer-sns-wrap { display: flex; flex-direction: column; align-items: flex-end; }
+  .footer-sns-label { font-size: 11px; color: rgba(159,225,203,0.35); letter-spacing: 0.08em; margin-bottom: 12px; }
+  .footer-sns { display: flex; gap: 10px; }
+  .sns-btn {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid rgba(93,202,165,0.25);
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, background 0.2s; text-decoration: none;
+  }
+  .sns-btn:hover { border-color: var(--teal-300); background: rgba(93,202,165,0.08); }
+  .sns-btn svg { width: 17px; height: 17px; fill: rgba(159,225,203,0.5); transition: fill 0.2s; }
+  .sns-btn:hover svg { fill: var(--teal-300); }
+  .footer-bottom { padding-top: 20px; font-size: 12px; color: rgba(159,225,203,0.25); text-align: center; }
+
+  /* ── 반응형 ── */
+  @media (max-width: 640px) {
+    .sec, .sec-full, .carrier-section, .apply-section, .faq-section, .trust-section { padding: 64px 24px; }
+    .hero-content { padding: 80px 24px 64px; }
+    .impact-row, .project-grid, .project-grid-3, .how-steps, .apply-options, .trust-grid { grid-template-columns: 1fr; }
+    .hero-trust { gap: 14px; }
+    .hero-scroll { right: 24px; }
+    footer { padding: 40px 24px; }
+    .footer-top { flex-direction: column; gap: 24px; }
+    .footer-sns-wrap { align-items: flex-start; }
+    .hero-cta-group { max-width: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero" style="max-width:none; padding:0;">
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">사단법인 평화삼천 · 피스(Peace) 캐리어 캠페인 2026</div>
+    <h1 class="hero-title">
+      당신의 여행이<br>
+      기부가 <em>됩니다</em>
+    </h1>
+    <p class="hero-subtitle">월 2만원이 아이들의 배움이 됩니다</p>
+    <div class="hero-cta-group">
+      <a href="#apply" class="btn-hero btn-hero-primary">월 2만원 후원 신청하기 →</a>
+      <a href="#project" class="btn-hero btn-hero-secondary">어디에 쓰이나요?</a>
+    </div>
+    <div class="hero-trust">
+      <span class="trust-item">국세청 지정 기부금 단체</span>
+      <span class="trust-item">기부금영수증 발급</span>
+      <span class="trust-item">2003년 창립</span>
+    </div>
+  </div>
+  <div class="hero-scroll">아래로 스크롤</div>
+</section>
+
+<!-- ── 스토리 ── -->
+<div style="background:#fff; padding: 80px 48px;">
+  <div style="max-width:680px; margin:0 auto; text-align:center;">
+    <p style="font-size:13px;letter-spacing:0.15em;color:#0A7EA4;font-weight:600;margin-bottom:24px;">사단법인 평화삼천 · 피스 캐리어 캠페인 2026</p>
+    <h2 style="font-family:'Nanum Myeongjo',Georgia,serif;font-size:clamp(26px,4vw,38px);font-weight:800;color:#04342C;line-height:1.4;margin-bottom:32px;">
+      당신의 후원이<br>한 청소년의 내일을 바꿉니다
+    </h2>
+    <p style="font-size:16px;color:#444441;line-height:2;margin-bottom:20px;">
+      평화삼천은 라오스와 베트남에서<br>
+      청소년들이 스스로 자립할 수 있도록<br>
+      직업기술교육 사업을 시작합니다.
+    </p>
+    <p style="font-size:16px;color:#444441;line-height:2;margin-bottom:20px;">
+      재봉틀 앞에 앉아 처음으로 바느질을 배우는 학생이<br>
+      언젠가 직접 옷을 만들어 팔 수 있도록.<br>
+      영상 편집을 배운 청년이 스스로 진로를 열어갈 수 있도록.
+    </p>
+    <p style="font-size:16px;color:#444441;line-height:2;margin-bottom:0;">
+      그 시작을 함께해주세요.<br>
+      더 많은 청소년에게 닿으려면<br>
+      <strong style="color:#0A7EA4;">더 많은 분이 함께해주셔야 합니다.</strong>
+    </p>
+  </div>
+</div>
+
+<!-- ── 사업 카드 ── -->
+<div class="sec-full project-cards-section">
+  <div class="sec-inner">
+    <div class="section-label">현장 사업 소개</div>
+    <h2 class="section-title">여러분의 후원이<br>닿는 곳</h2>
+    <div class="project-grid project-grid-2">
+      <div class="project-card-light">
+        <div class="project-photo-placeholder" style="width:100%;height:180px;background:#eee;border:1.5px dashed #bbb;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:#aaa;font-size:13px;letter-spacing:0.05em;">현장 사진 (추후 삽입)</div>
+        <div class="project-card-icon">🧵</div>
+        <div class="project-country-light">Laos · 라오스</div>
+        <div class="project-name-light">라오스 왕마이<br>직업기술교육센터</div>
+        <div class="project-desc-light">재봉·컴퓨터 교육으로 청소년들이 스스로 자립할 수 있는 기술과 힘을 기릅니다. 직업기술 교육을 통해 학생들이 지역 사회에서 경제적으로 자립하는 기반을 만들어갑니다.</div>
+      </div>
+      <div class="project-card-light">
+        <div class="project-photo-placeholder" style="width:100%;height:180px;background:#eee;border:1.5px dashed #bbb;border-radius:8px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:#aaa;font-size:13px;letter-spacing:0.05em;">현장 사진 (추후 삽입)</div>
+        <div class="project-card-icon">🎬</div>
+        <div class="project-country-light">Vietnam · 베트남</div>
+        <div class="project-name-light">한·베직업전문대학<br>CG 기술교육</div>
+        <div class="project-desc-light">지역 청소년과 청년들이 CG 전문기술을 배워 새로운 진로와 미래를 꿈꿀 수 있도록 지원합니다. 전문기술 교육이 청소년들의 취업과 자립으로 이어집니다.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ── 참여 방법 ── -->
+<div class="sec-full how-section">
+  <div class="sec-inner">
+    <div class="section-label">참여 방법</div>
+    <h2 class="section-title">3단계로<br>간단하게</h2>
+    <p class="section-lead">후원 신청부터 감사 선물 전달까지 어렵지 않습니다.</p>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-step-num">01</div>
+        <div class="how-step-title">후원 신청</div>
+        <div class="how-step-desc">CMS 정기후원을 신청합니다. 월 2만원 신규 후원 또는 기존 회원은 월 1만원 이상 증액으로 참여하실 수 있습니다.</div>
+        <span class="how-step-tag" style="margin-top:16px;">월 2만원</span>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">02</div>
+        <div class="how-step-title">평화삼천 회원으로의 동행 시작</div>
+        <div class="how-step-desc">신청 후 첫 달 후원금 납부가 확인되면 사무국에서 개별 연락드립니다.</div>
+        <span class="how-step-tag" style="margin-top:16px;">기부금 영수증 가능</span>
+      </div>
+      <div class="how-step">
+        <div class="how-step-num">03</div>
+        <div class="how-step-title">감사 선물 전달</div>
+        <div class="how-step-desc">사무국 확인 연락 시, 소개해 주신 분(추천인)의 성함과 선물을 받으실 주소지를 알려주세요. 평화삼천이 준비한 감사 선물을 직접 전달드립니다.</div>
+        <span class="how-step-tag" style="margin-top:16px;">환영합니다!</span>
+      </div>
+    </div>
+    <div class="how-cta-wrap">
+      <a href="https://www.peace3000.net/" target="_blank" class="how-cta-btn">후원 시작하고 기부 여행 시작하기 →</a>
+    </div>
+  </div>
+</div>
+
+<!-- ── 캐리어 ── -->
+<div class="carrier-section">
+  <div class="carrier-inner">
+    <div class="section-label">감사 선물</div>
+    <h2 class="section-title">피스(Peace) 캐리어</h2>
+    <div class="carrier-notice-top">
+      평화삼천이 기증받은 캐리어를 신규·증액 후원자분께 감사의 의미로 전달드립니다.
+    </div>
+    <div class="carrier-compact">
+      <div class="carrier-compact-header">
+        <div class="carrier-compact-icon">🧳</div>
+        <div>
+          <div class="carrier-compact-name">인포트 루미나 20인치</div>
+          <div class="carrier-compact-sub">프리미엄 폴리카보네이트 · 기증받은 캐리어</div>
+        </div>
+      </div>
+      <div class="carrier-compact-specs">
+        <div class="spec-row">
+          <div class="spec-key">색상</div>
+          <div class="spec-val">아이보리 / 실버 중 랜덤 발송 예정</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">소재</div>
+          <div class="spec-val">단단한 폴리카보네이트</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">A/S</div>
+          <div class="spec-val">평생 무료</div>
+        </div>
+        <div class="spec-row">
+          <div class="spec-key">배송</div>
+          <div class="spec-val">첫 달 후원 확인 후 순차 배송</div>
+        </div>
+      </div>
+      <div class="carrier-link-row">
+        <a href="https://infortmall.co.kr/product/%EC%9D%B8%ED%8F%AC%ED%8A%B8-%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84-%EC%BA%90%EB%A6%AC%EC%96%B4-%EB%A3%A8%EB%AF%B8%EB%82%98-%EB%8B%A4%EC%9D%B4%EC%95%84%EB%AA%AC%EB%93%9C-%EC%8B%A4%EB%B2%84-20%EC%9D%B8%EC%B9%98/93/category/54/display/1/" target="_blank" class="btn-carrier-detail">평화삼천이 준비한 감사선물, '피스 캐리어' 자세히 보기 →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── 후원 방법 (어깨동무 스타일) ── -->
+<div id="apply" style="background:#fff; padding:80px 48px;">
+  <div style="max-width:680px; margin:0 auto;">
+    <p style="font-size:13px;letter-spacing:0.15em;color:#0A7EA4;font-weight:600;margin-bottom:16px;text-align:center;">후원 방법</p>
+    <h2 style="font-family:'Nanum Myeongjo',Georgia,serif;font-size:clamp(26px,4vw,36px);font-weight:800;color:#04342C;text-align:center;margin-bottom:48px;">함께해 주세요</h2>
+
+    <div style="display:flex;flex-direction:column;gap:0;">
+
+      <!-- 신규 후원 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 0;border-bottom:1px solid #E8F5F0;">
+        <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
+          <div style="font-size:28px;flex-shrink:0;">🌱</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#04342C;margin-bottom:6px;">새로 함께하기</div>
+            <div style="font-size:14px;color:#444441;line-height:1.7;">월 2만원 CMS 정기후원으로 시작합니다.<br>피스(Peace) 캐리어를 감사 선물로 드립니다.</div>
+          </div>
+        </div>
+        <a href="https://online.mrm.or.kr/pWceTl7" target="_blank" style="flex-shrink:0;display:inline-flex;align-items:center;padding:12px 22px;border-radius:4px;background:#0A7EA4;color:#fff;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;">후원 신청하기 →</a>
+      </div>
+
+      <!-- 증액 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 0;border-bottom:1px solid #E8F5F0;">
+        <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
+          <div style="font-size:28px;flex-shrink:0;">💚</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#04342C;margin-bottom:6px;">더 든든하게 함께하기</div>
+            <div style="font-size:14px;color:#444441;line-height:1.7;">현재 후원금에서 월 1만원 이상 증액해주세요.<br>동일한 피스(Peace) 캐리어를 감사 선물로 드립니다.</div>
+          </div>
+        </div>
+        <a href="https://forms.gle/g5ejKRxAwhGwusm58" target="_blank" style="flex-shrink:0;display:inline-flex;align-items:center;padding:12px 22px;border-radius:4px;background:transparent;color:#0A7EA4;border:1.5px solid #0A7EA4;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;">증액 신청하기 →</a>
+      </div>
+
+      <!-- 공유 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 0;border-bottom:1px solid #E8F5F0;">
+        <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
+          <div style="font-size:28px;flex-shrink:0;">📣</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#04342C;margin-bottom:6px;">주변에 소개하기</div>
+            <div style="font-size:14px;color:#444441;line-height:1.7;">평화삼천을 아직 모르는 분께 이 페이지를 전달해 주세요.</div>
+          </div>
+        </div>
+        <button id="share-btn" onclick="doShare(event)" style="flex-shrink:0;display:inline-flex;align-items:center;padding:12px 22px;border-radius:4px;background:transparent;color:#0A7EA4;border:1.5px solid #0A7EA4;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;">공유하기 →</button>
+      </div>
+
+      <!-- 기부금 영수증 -->
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;padding:28px 0;border-bottom:1px solid #E8F5F0;">
+        <div style="display:flex;align-items:flex-start;gap:20px;flex:1;">
+          <div style="font-size:28px;flex-shrink:0;">🧾</div>
+          <div>
+            <div style="font-size:15px;font-weight:700;color:#04342C;margin-bottom:6px;">기부금 영수증 신청</div>
+            <div style="font-size:14px;color:#444441;line-height:1.7;">입금 내역 확인과 기부금영수증 발급을 위해<br>아래 링크에 정보를 남겨주세요.</div>
+          </div>
+        </div>
+        <a href="https://forms.gle/W7pRsSUQQD7th7iHA" target="_blank" style="flex-shrink:0;display:inline-flex;align-items:center;padding:12px 22px;border-radius:4px;background:transparent;color:#0A7EA4;border:1.5px solid #0A7EA4;font-size:14px;font-weight:700;text-decoration:none;white-space:nowrap;">간편 신청하기 →</a>
+      </div>
+
+    </div>
+
+    <!-- 계좌 안내 -->
+    <div style="margin-top:40px;padding:28px;background:#E8F5F0;border-radius:8px;text-align:center;">
+      <p style="font-size:13px;color:#0F6E56;font-weight:600;margin-bottom:8px;">후원 계좌</p>
+      <p style="font-size:17px;font-weight:700;color:#04342C;margin-bottom:4px;">우리은행 1005-503-390376</p>
+      <p style="font-size:14px;color:#444441;">(예금주: 사단법인 평화삼천)</p>
+    </div>
+
+    <!-- 문의 -->
+    <div style="margin-top:24px;text-align:center;">
+      <p style="font-size:14px;color:#888780;line-height:1.9;">
+        후원 관련 문의: 사단법인 평화삼천 사무국<br>
+        Tel. 02-723-9473 / 9475 &nbsp;|&nbsp;
+        <a href="mailto:peace3000@peace3000.net" style="color:#0A7EA4;">peace3000@peace3000.net</a>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- ── 신뢰 정보 ── -->
+<div class="sec-full trust-section">
+  <div class="sec-inner">
+    <div class="section-label">평화삼천은</div>
+    <h2 class="section-title">평화삼천은 평범한 사람들이<br>함께 만드는 평화로운 세상을 꿈꿉니다</h2>
+    <p class="section-lead">2003년 창립 이래 평화와 나눔으로 가득한 인류의 3000년대를 희망하며 국내, 해외 이웃들을 위해 활동하는 비영리단체입니다.</p>
+    <div class="trust-grid">
+      <div class="trust-card">
+        <div class="trust-icon">🏛</div>
+        <div class="trust-title">국제 비영리단체 (INGO)</div>
+        <div class="trust-body">한국·베트남 정부에 공식 등록된 국제 비영리단체로, 2003년 11월 24일 창립했습니다.</div>
+      </div>
+      <div class="trust-card">
+        <div class="trust-icon">📄</div>
+        <div class="trust-title">법정기부금 단체</div>
+        <div class="trust-body">평화삼천은 법정기부금 단체로서 기부코드 40번(지정기부금)에 해당하며, 개인은 소득금액의 30%까지, 법인은 10%까지 세액이 공제됩니다.</div>
+      </div>
+
+      <div class="trust-card">
+        <div class="trust-icon">🌏</div>
+        <div class="trust-title">18년 이상 현지 운영</div>
+        <div class="trust-body">2008년부터 라오스·베트남에서 직접 사업을 운영하며 현지 청소년의 자립을 지원해 왔습니다.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ ── -->
+<div class="sec-full faq-section">
+  <div class="sec-inner">
+    <div class="section-label">자주 묻는 질문</div>
+    <h2 class="section-title">궁금한 점이<br>있으신가요?</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">정기후원은 어떻게 신청하나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">위 '후원 신청하기' 버튼을 클릭하시면 평화삼천 홈페이지로 이동합니다. CMS(자동이체) 방식으로 신청하시면 매월 지정일에 자동으로 후원금이 출금됩니다. 신청 후 사무국에서 개별 확인 연락을 드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">피스 캐리어는 언제 받을 수 있나요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">첫 달 후원금 납부가 확인된 후 월별 대상자를 취합하여 순차 배송합니다. 배송 일정은 사무국에서 개별 안내드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">
+          <span class="faq-q-text">기부금영수증 발급이 가능한가요?</span>
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">네, 평화삼천은 국세청 지정 기부금 단체로 연말정산 시 기부금영수증 발급이 가능합니다. 자세한 사항은 사무국으로 문의해 주세요.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-name">사단법인 평화삼천</div>
+        <div class="footer-info">
+          Tel. 02-723-9473 / 9475<br>
+          <a href="mailto:peace3000@peace3000.net">peace3000@peace3000.net</a><br>
+          <a href="https://www.peace3000.net/" target="_blank">www.peace3000.net</a>
+        </div>
+      </div>
+      <div class="footer-sns-wrap">
+        <div class="footer-sns-label">SNS</div>
+        <div class="footer-sns">
+          <a href="https://www.instagram.com/peace3000_korea/" target="_blank" class="sns-btn" aria-label="인스타그램">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/peace3000korea?locale=ko_KR" target="_blank" class="sns-btn" aria-label="페이스북">
+            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://blog.naver.com/i_love_peace3000" target="_blank" class="sns-btn" aria-label="네이버 블로그">
+            <svg viewBox="0 0 24 24"><path d="M16.273 12.845L7.376 0H0v24h7.727V11.155L16.624 24H24V0h-7.727z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 사단법인 평화삼천 · 피스케리어 캠페인 신규회원 참여 페이지</div>
+  </div>
+</footer>
+
+<script>
+  document.querySelectorAll('.faq-q').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var item = this.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(el) { el.classList.remove('open'); });
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+  function doShare(e) {
+    if (e) e.preventDefault();
+    var data = {
+      title: '피스(Peace) 캐리어 — 월 2만원이 아이들의 배움이 됩니다',
+      text: '평화삼천 피스 캐리어 캠페인에 함께해 주세요. 월 2만원 정기후원으로 라오스·베트남 청소년 교육을 지원합니다.',
+      url: window.location.href
+    };
+    if (navigator.share) {
+      navigator.share(data).catch(function(){});
+    } else if (navigator.clipboard) {
+      navigator.clipboard.writeText(data.url).then(function() {
+        alert('링크가 복사되었습니다!\n카카오톡 또는 문자에 붙여넣기 해주세요.');
+      });
+    } else {
+      prompt('아래 링크를 복사해 공유해 주세요:', data.url);
+    }
+  }
+
+  var shareBtn = document.getElementById('share-btn');
+  if (shareBtn) shareBtn.addEventListener('click', doShare);
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var href = this.getAttribute('href');
+      if (href === '#') return;
+      var target = document.querySelector(href);
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+</script>
+</body>
+</html>
